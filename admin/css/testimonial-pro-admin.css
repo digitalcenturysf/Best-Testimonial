@@ -1,0 +1,25 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+
+.inside th{
+    font-weight: 400;
+    text-align: right;
+    vertical-align: top;
+    padding-top: 8px;
+}
+.inside td {
+    margin: 5px;
+    padding: 5px;
+    width: 70%;
+}
+.inside table {
+    border: none;
+    width: 100%;
+}
+.inside input[type="text"].custom-input, 
+.inside input[type="email"].custom-input, 
+.inside input[type="url"].custom-input {
+    width: 100%;
+}
