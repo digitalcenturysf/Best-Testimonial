@@ -11,6 +11,19 @@
  * @package    Testimonial_Pro
  * @subpackage Testimonial_Pro/admin/partials
  */
-?>
+ 
+ ?>
 
-<!-- This file should primarily consist of HTML with a little bit of PHP. -->
+<div class="wrap"> 
+    <h2><?php esc_html_e('Settings', 'testimonial-pro'); ?></h2>
+    <div id="poststuff"> 
+        <div id="post-body"> 
+	        <div class="postbox">
+	            <div class="inside">
+	                <?php $this->settings_api->show_navigation();?>
+	                <?php $this->settings_api->show_forms();?> 
+	            </div>  
+	        </div>  
+        </div>    
+    </div>   
+</div>  

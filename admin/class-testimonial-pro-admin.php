@@ -40,6 +40,25 @@ class Testimonial_Pro_Admin {
 	 */
 	private $version;
 
+
+	/**
+	 * The settings api of this plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var 	$settings_api	The settings api of this plugin
+	 */
+	private $settings_api;
+
+	/**
+	 * The plugin plugin_base_file of the plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   protected
+	 * @var      string plugin_base_file The plugin plugin_base_file of this plugin.
+	 */
+	protected $plugin_base_file;
+
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -51,6 +70,8 @@ class Testimonial_Pro_Admin {
 
 		$this->testimonial_pro = $testimonial_pro;
 		$this->version = $version;
+
+        $this->settings_api = new Testimonial_Pro_Settings_API($this->testimonial_pro, $this->version); 
 
 	}
 
@@ -177,6 +198,17 @@ class Testimonial_Pro_Admin {
 	}
 
 	/**
+	 * Remvoe quick edit 
+	 *
+	 * @since    1.0.0
+	 */ 
+	function remove_quick_edit( $actions ) {    
+	    unset($actions['inline hide-if-no-js']);
+	    return $actions;
+	}
+		 
+
+	/**
 	 * Register Columns for Testimonial Pro Admin View
 	 *
 	 * @since    1.0.0
@@ -218,7 +250,7 @@ class Testimonial_Pro_Admin {
 		$client_name    = !empty( $fieldValues['client_name'] ) ? $fieldValues['client_name'] : '';
 		$email = !empty( $fieldValues['email'] ) ? $fieldValues['email'] : '';
 		$company_name = !empty( $fieldValues['company_name'] ) ? $fieldValues['company_name'] : '';
-		$company_website= !empty( $fieldValues['company_website'] ) ? $fieldValues['company_website'] : ''; 
+		$company_website= !empty( $fieldValues['company_website'] ) ? $fieldValues['company_website'] : '#'; 
 
 		if ( 'tpro_full_name' === $column_name ) {
 		    if ( ! $client_name ) {
@@ -398,6 +430,168 @@ class Testimonial_Pro_Admin {
 	}
 
 
+    public function testimonial_pro_add_admin_menu() {
+    	add_submenu_page('edit.php?post_type=testimonial_pro', __('Settings', $this->testimonial_pro), __('Settings', $this->testimonial_pro ), 'manage_options', 'testimonial_pro_settings', array($this, 'display_plugin_admin_settings')); 
+    }
+    
+	public function display_plugin_admin_settings() {
+
+		include('partials/testimonial-pro-admin-display.php');
+	}
+
+ 
+    public function testimonial_pro_settings_init() {
+
+        //set the settings
+        $this->settings_api->set_sections( $this->get_settings_sections() );
+        $this->settings_api->set_fields( $this->get_settings_fields() );
+
+        //initialize settings
+        $this->settings_api->admin_init();
+    }
+
+    public function get_settings_sections() {
+        $sections = array(
+            array(
+                'id'    => 'tpro_basics',
+                'title' => __( 'Basic Settings', 'testimonial-pro' )
+            ),
+            array(
+                'id'    => 'tpro_advanced',
+                'title' => __( 'Advanced Settings', 'testimonial-pro' )
+            )
+        );
+        return $sections;
+    }
+
+    /**
+     * Returns all the settings fields
+     *
+     * @return array settings fields
+     */
+    public function get_settings_fields() {
+        $settings_fields = array(
+            'tpro_basics' => array(
+                array(
+                    'name'              => 'text_val',
+                    'label'             => __( 'Text Input', 'testimonial-pro' ),
+                    'desc'              => __( 'Text input description', 'testimonial-pro' ),
+                    'placeholder'       => __( 'Text Input placeholder', 'testimonial-pro' ),
+                    'type'              => 'text',
+                    'default'           => 'Title',
+                    'sanitize_callback' => 'sanitize_text_field'
+                ),
+                array(
+                    'name'              => 'number_input',
+                    'label'             => __( 'Number Input', 'testimonial-pro' ),
+                    'desc'              => __( 'Number field with validation callback `floatval`', 'testimonial-pro' ),
+                    'placeholder'       => __( '1.99', 'testimonial-pro' ),
+                    'min'               => 0,
+                    'max'               => 100,
+                    'step'              => '0.01',
+                    'type'              => 'number',
+                    'default'           => 'Title',
+                    'sanitize_callback' => 'floatval'
+                ),
+                array(
+                    'name'        => 'textarea',
+                    'label'       => __( 'Textarea Input', 'testimonial-pro' ),
+                    'desc'        => __( 'Textarea description', 'testimonial-pro' ),
+                    'placeholder' => __( 'Textarea placeholder', 'testimonial-pro' ),
+                    'type'        => 'textarea'
+                ),
+                array(
+                    'name'        => 'html',
+                    'desc'        => __( 'HTML area description. You can use any <strong>bold</strong> or other HTML elements.', 'testimonial-pro' ),
+                    'type'        => 'html'
+                ),
+                array(
+                    'name'  => 'checkbox',
+                    'label' => __( 'Checkbox', 'testimonial-pro' ),
+                    'desc'  => __( 'Checkbox Label', 'testimonial-pro' ),
+                    'type'  => 'checkbox'
+                ),
+                array(
+                    'name'    => 'radio',
+                    'label'   => __( 'Radio Button', 'testimonial-pro' ),
+                    'desc'    => __( 'A radio button', 'testimonial-pro' ),
+                    'type'    => 'radio',
+                    'options' => array(
+                        'yes' => 'Yes',
+                        'no'  => 'No'
+                    )
+                ),
+                array(
+                    'name'    => 'selectbox',
+                    'label'   => __( 'A Dropdown', 'testimonial-pro' ),
+                    'desc'    => __( 'Dropdown description', 'testimonial-pro' ),
+                    'type'    => 'select',
+                    'default' => 'no',
+                    'options' => array(
+                        'yes' => 'Yes',
+                        'no'  => 'No'
+                    )
+                ),
+                array(
+                    'name'    => 'password',
+                    'label'   => __( 'Password', 'testimonial-pro' ),
+                    'desc'    => __( 'Password description', 'testimonial-pro' ),
+                    'type'    => 'password',
+                    'default' => ''
+                ),
+                array(
+                    'name'    => 'file',
+                    'label'   => __( 'File', 'testimonial-pro' ),
+                    'desc'    => __( 'File description', 'testimonial-pro' ),
+                    'type'    => 'file',
+                    'default' => '',
+                    'options' => array(
+                        'button_label' => 'Choose Image'
+                    )
+                )
+            ),
+            'tpro_advanced' => array(
+                array(
+                    'name'    => 'color',
+                    'label'   => __( 'Color', 'testimonial-pro' ),
+                    'desc'    => __( 'Color description', 'testimonial-pro' ),
+                    'type'    => 'color',
+                    'default' => ''
+                ),
+                array(
+                    'name'    => 'password',
+                    'label'   => __( 'Password', 'testimonial-pro' ),
+                    'desc'    => __( 'Password description', 'testimonial-pro' ),
+                    'type'    => 'password',
+                    'default' => ''
+                ),
+                array(
+                    'name'    => 'wysiwyg',
+                    'label'   => __( 'Advanced Editor', 'testimonial-pro' ),
+                    'desc'    => __( 'WP_Editor description', 'testimonial-pro' ),
+                    'type'    => 'wysiwyg',
+                    'default' => ''
+                ),
+                array(
+                    'name'    => 'multicheck',
+                    'label'   => __( 'Multile checkbox', 'testimonial-pro' ),
+                    'desc'    => __( 'Multi checkbox description', 'testimonial-pro' ),
+                    'type'    => 'multicheck',
+                    'default' => array('one' => 'one', 'four' => 'four'),
+                    'options' => array(
+                        'one'   => 'One',
+                        'two'   => 'Two',
+                        'three' => 'Three',
+                        'four'  => 'Four'
+                    )
+                ),
+            )
+        );
+
+        return $settings_fields;
+    }
+ 
+ 
 
 
 }

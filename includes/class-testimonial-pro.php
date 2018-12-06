@@ -114,8 +114,13 @@ class Testimonial_Pro {
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-testimonial-pro-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-testimonial-pro-admin-settings.php';
 
+		/**
+		 * The class responsible for defining all actions that occur in the admin area.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-testimonial-pro-admin.php';
+ 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
@@ -153,15 +158,20 @@ class Testimonial_Pro {
 	private function define_admin_hooks() {
 
 		$plugin_admin = new Testimonial_Pro_Admin( $this->get_testimonial_pro(), $this->get_version() );
+		//$plugin_admin_display = new Testimonial_Pro_Admin_Display( $this->get_testimonial_pro(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' ); 
         $this->loader->add_action('init', $plugin_admin, 'testimonial_pro_thumbnail_support');
         $this->loader->add_action('init', $plugin_admin, 'testimonial_pro_post_type');
         $this->loader->add_action('init', $plugin_admin, 'testimonial_pro_categories');  
+        $this->loader->add_filter('post_row_actions', $plugin_admin, 'remove_quick_edit',10,1);  
         $this->loader->add_action('admin_init', $plugin_admin, 'testimonial_pro_columns_register');  
         $this->loader->add_action('add_meta_boxes', $plugin_admin, 'testimonial_pro_add_meta_boxes'); 
-        $this->loader->add_action('save_post', $plugin_admin, 'testimonial_pro_save_post_metaboxes',10,2);     
+        $this->loader->add_action('save_post', $plugin_admin, 'testimonial_pro_save_post_metaboxes',10,2);   
+        $this->loader->add_action('admin_init', $plugin_admin, 'testimonial_pro_settings_init');
+        $this->loader->add_action('admin_menu', $plugin_admin, 'testimonial_pro_add_admin_menu');
+ 
 
 	}
 
