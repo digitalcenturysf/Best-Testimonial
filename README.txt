@@ -43,9 +43,9 @@ This section describes how to install the plugin and get it working.
 
 e.g.
 
-1. Upload `testimonial-pro.php` to the `/wp-content/plugins/` directory
+1. Upload `best-testimonial.php` to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php do_action('Testimonial_Pro_hook'); ?>` in your templates
+1. Place `<?php do_action('Best_Testimonial_hook'); ?>` in your templates
 
 == Frequently Asked Questions ==
 

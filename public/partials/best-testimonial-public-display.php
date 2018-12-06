@@ -8,8 +8,8 @@
  * @link      https://digitalcenturysf.com/
  * @since      1.0.0
  *
- * @package    Testimonial_Pro
- * @subpackage Testimonial_Pro/public/partials
+ * @package    Best_Testimonial
+ * @subpackage Best_Testimonial/public/partials
  */
 ?>
 

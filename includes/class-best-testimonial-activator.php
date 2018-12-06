@@ -6,8 +6,8 @@
  * @link      https://digitalcenturysf.com/
  * @since      1.0.0
  *
- * @package    Testimonial_Pro
- * @subpackage Testimonial_Pro/includes
+ * @package    Best_Testimonial
+ * @subpackage Best_Testimonial/includes
  */
 
 /**
@@ -16,11 +16,11 @@
  * This class defines all code necessary to run during the plugin's activation.
  *
  * @since      1.0.0
- * @package    Testimonial_Pro
- * @subpackage Testimonial_Pro/includes
+ * @package    Best_Testimonial
+ * @subpackage Best_Testimonial/includes
  * @author     digitalcenturysf <digitalcenturysf@gmail.com>
  */
-class Testimonial_Pro_Activator {
+class Best_Testimonial_Activator {
 
 	/**
 	 * Short Description. (use period)

@@ -1,7 +1,7 @@
 <?php
  
-if ( !class_exists( 'Testimonial_Pro_Settings_API' ) ):
-class Testimonial_Pro_Settings_API {
+if ( !class_exists( 'Best_Testimonial_Settings_API' ) ):
+class Best_Testimonial_Settings_API {
 
     /**
      * settings sections array

@@ -22,7 +22,7 @@
  * @link      https://digitalcenturysf.com/
  * @since      1.0.0
  *
- * @package    Testimonial_Pro
+ * @package    Best_Testimonial
  */
 
 // If uninstall not called from WordPress, then exit.

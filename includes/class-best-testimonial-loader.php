@@ -6,8 +6,8 @@
  * @link      https://digitalcenturysf.com/
  * @since      1.0.0
  *
- * @package    Testimonial_Pro
- * @subpackage Testimonial_Pro/includes
+ * @package    Best_Testimonial
+ * @subpackage Best_Testimonial/includes
  */
 
 /**
@@ -17,11 +17,11 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Testimonial_Pro
- * @subpackage Testimonial_Pro/includes
+ * @package    Best_Testimonial
+ * @subpackage Best_Testimonial/includes
  * @author     digitalcenturysf <digitalcenturysf@gmail.com>
  */
-class Testimonial_Pro_Loader {
+class Best_Testimonial_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

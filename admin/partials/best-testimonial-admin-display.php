@@ -8,14 +8,14 @@
  * @link      https://digitalcenturysf.com/
  * @since      1.0.0
  *
- * @package    Testimonial_Pro
- * @subpackage Testimonial_Pro/admin/partials
+ * @package    Best_Testimonial
+ * @subpackage Best_Testimonial/admin/partials
  */
  
  ?>
 
 <div class="wrap"> 
-    <h2><?php esc_html_e('Settings', 'testimonial-pro'); ?></h2>
+    <h2><?php esc_html_e('Settings', 'best-testimonial'); ?></h2>
     <div id="poststuff"> 
         <div id="post-body"> 
 	        <div class="postbox">

@@ -9,8 +9,8 @@
  * @link      https://digitalcenturysf.com/
  * @since      1.0.0
  *
- * @package    Testimonial_Pro
- * @subpackage Testimonial_Pro/includes
+ * @package    Best_Testimonial
+ * @subpackage Best_Testimonial/includes
  */
 
 /**
@@ -20,11 +20,11 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    Testimonial_Pro
- * @subpackage Testimonial_Pro/includes
+ * @package    Best_Testimonial
+ * @subpackage Best_Testimonial/includes
  * @author     digitalcenturysf <digitalcenturysf@gmail.com>
  */
-class Testimonial_Pro_i18n {
+class Best_Testimonial_i18n {
 
 
 	/**
@@ -35,7 +35,7 @@ class Testimonial_Pro_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'testimonial-pro',
+			'best-testimonial',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);
