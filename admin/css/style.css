@@ -2,24 +2,64 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
+#poststuff h2, #poststuff h3.hndle {
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: underline;
+    margin-bottom: -1px;
+    padding-bottom: 0;
+}
 
+#poststuff .form-table th{
+    font-weight: 600;
+    text-align: left;
+    padding: 5px;
+}
 .inside th{
     font-weight: 400;
     text-align: right;
     vertical-align: top;
     padding-top: 8px;
 }
+#poststuff .inside .form-table td{
+    width: 80% !important;
+}
+
+#poststuff .inside .form-table td p.description{
+    margin-top: 0;
+}
 .inside td {
     margin: 5px;
     padding: 5px;
-    width: 70%;
-}
+    width: 70% !important;
+} 
 .inside table {
     border: none;
     width: 100%;
-}
+} 
 .inside input[type="text"].custom-input, 
 .inside input[type="email"].custom-input, 
 .inside input[type="url"].custom-input {
     width: 100%;
+}
+.nav-tab-wrapper, .wrap h2.nav-tab-wrapper, h1.nav-tab-wrapper{
+    border-bottom: 0;
+}
+#wpbody-content .metabox-holder { 
+    border-top: 1px solid #ccc;
+}
+ 
+.nav-tab{
+    color: #000;
+}
+.nav-tab:hover,
+.nav-tab-active {
+    border-bottom: 0;
+    background: #fff; 
+}
+.group h2{
+    display: none;
+}
+#poststuff .metabox-holder {
+    padding-top: 20px;
 }

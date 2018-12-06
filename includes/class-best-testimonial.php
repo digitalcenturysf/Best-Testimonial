@@ -120,6 +120,11 @@ class Best_Testimonial {
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-best-testimonial-admin.php';
+
+		/**
+		 * The class responsible for defining all actions that occur in the admin area.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/partials/best-testimonial-admin-option.php';
  
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
@@ -158,7 +163,7 @@ class Best_Testimonial {
 	private function define_admin_hooks() {
 
 		$plugin_admin = new Best_Testimonial_Admin( $this->get_best_testimonial(), $this->get_version() );
-		//$plugin_admin_display = new Best_Testimonial_Admin_Display( $this->get_best_testimonial(), $this->get_version() );
+		$plugin_admin_options = new Best_Testimonial_Admin_Options( $this->get_best_testimonial(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' ); 
@@ -169,8 +174,8 @@ class Best_Testimonial {
         $this->loader->add_action('admin_init', $plugin_admin, 'best_testimonial_columns_register');  
         $this->loader->add_action('add_meta_boxes', $plugin_admin, 'best_testimonial_add_meta_boxes'); 
         $this->loader->add_action('save_post', $plugin_admin, 'best_testimonial_save_post_metaboxes',10,2);   
-        $this->loader->add_action('admin_init', $plugin_admin, 'best_testimonial_settings_init');
-        $this->loader->add_action('admin_menu', $plugin_admin, 'best_testimonial_add_admin_menu');
+        $this->loader->add_action('admin_init', $plugin_admin_options, 'settings_init');
+        $this->loader->add_action('admin_menu', $plugin_admin_options, 'admin_menu');
  
 
 	}

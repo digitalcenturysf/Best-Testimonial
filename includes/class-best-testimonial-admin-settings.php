@@ -1,5 +1,15 @@
 <?php
- 
+/**
+ * The admin-settings functionality of the plugin.
+ *
+ * @link      https://digitalcenturysf.com/
+ * @since      1.0.0
+ *
+ * @package    Best_Testimonial
+ * @subpackage Best_Testimonial/admin
+ */
+
+
 if ( !class_exists( 'Best_Testimonial_Settings_API' ) ):
 class Best_Testimonial_Settings_API {
 
