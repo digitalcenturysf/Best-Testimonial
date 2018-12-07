@@ -49,7 +49,7 @@ class Best_Testimonial_Admin_Options {
 	 * @var 	$settings_api	The settings api of this plugin
 	 */
 	private $settings_api;
- 
+
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -62,7 +62,7 @@ class Best_Testimonial_Admin_Options {
 		$this->best_testimonial = $best_testimonial;
 		$this->version = $version;
 
-        $this->settings_api = new Best_Testimonial_Settings_API($this->best_testimonial, $this->version); 
+        $this->settings_api = new Best_Testimonial_Settings_API($this->best_testimonial, $this->version);  
 
 	}
  
@@ -71,7 +71,7 @@ class Best_Testimonial_Admin_Options {
     	add_submenu_page('edit.php?post_type=best_testimonial', __('Settings', $this->best_testimonial), __('Settings', $this->best_testimonial ), 'manage_options', 'best_testimonial_settings', array($this, 'admin_settings')); 
     }
     
-	public function admin_settings() {
+	public function admin_settings() { 
 
 		include('best-testimonial-admin-display.php');
 	}
@@ -92,11 +92,7 @@ class Best_Testimonial_Admin_Options {
             array(
                 'id'    => 'bestt_general',
                 'title' => __( 'General', 'best-testimonial' )
-            ),
-            array(
-                'id'    => 'bestt_advanced',
-                'title' => __( 'Advanced', 'best-testimonial' )
-            )
+            ) 
         );
         return $sections;
     }
@@ -192,9 +188,7 @@ class Best_Testimonial_Admin_Options {
                     'options' => array(
                         'button_label' => 'Choose Image'
                     )
-                )
-            ),
-            'bestt_advanced' => array(
+                ),
                 array(
                     'name'    => 'color',
                     'label'   => __( 'Color', 'best-testimonial' ),

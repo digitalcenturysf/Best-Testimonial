@@ -17,13 +17,14 @@
 <div class="wrap"> 
     <h2><?php esc_html_e('Settings', 'best-testimonial'); ?></h2>
     <div id="poststuff"> 
-        <div id="post-body"> 
-	        <div class="postbox">
+        <div id="post-body" class="metabox-holder columns-2"> 
+        	<div id="post-body-content"> 
 	            <div class="inside">
 	                <?php $this->settings_api->show_navigation();?>
 	                <?php $this->settings_api->show_forms();?> 
-	            </div>  
-	        </div>  
+	            </div>   
+	        </div> 
+	        <?php include('sidebar.php'); ?>  
         </div>    
     </div>   
 </div>  

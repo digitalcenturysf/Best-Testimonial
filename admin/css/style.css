@@ -45,9 +45,7 @@
 .nav-tab-wrapper, .wrap h2.nav-tab-wrapper, h1.nav-tab-wrapper{
     border-bottom: 0;
 }
-#wpbody-content .metabox-holder { 
-    border-top: 1px solid #ccc;
-}
+ 
  
 .nav-tab{
     color: #000;
@@ -59,7 +57,8 @@
 }
 .group h2{
     display: none;
-}
-#poststuff .metabox-holder {
-    padding-top: 20px;
+} 
+span.support{
+    padding: 0 12px;
+    font-style: italic;
 }
