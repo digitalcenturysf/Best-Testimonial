@@ -27,6 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'BEST_TESTIMONIAL_VERSION', '1.0.0' ); 
 define( 'BEST_TESTIMONIAL_PLUGIN', plugin_basename( __FILE__ ) ); // best-testimonial/best-testimonial.php
 define( 'BEST_TESTIMONIAL', dirname( BEST_TESTIMONIAL_PLUGIN ) );           // best-testimonial
+define( 'BEST_TESTIMONIAL_DIR', WP_PLUGIN_URL."/".dirname( plugin_basename( __FILE__ ) ) );           // best-testimonial
 define( 'BEST_TESTIMONIAL_STORE_URL', 'https://digitalcenturysf.com/' );
 
 

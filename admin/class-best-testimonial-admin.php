@@ -306,6 +306,7 @@ class Best_Testimonial_Admin {
 		echo '<div id="testimonialpro_metabox_wrapper">';
 
 		$client_name    = isset( $fieldValues['client_name'] ) ? $fieldValues['client_name'] : '';
+		$client_designation    = isset( $fieldValues['client_designation'] ) ? $fieldValues['client_designation'] : '';
 		$email = isset( $fieldValues['email'] ) ? $fieldValues['email'] : '';
 		$company_name = isset( $fieldValues['company_name'] ) ? $fieldValues['company_name'] : '';
 		$company_website= isset( $fieldValues['company_website'] ) ? $fieldValues['company_website'] : ''; 
@@ -331,6 +332,16 @@ class Best_Testimonial_Admin {
 					</tr>
 					<tr>
 						<th>
+							<label for="client_designation"><?php esc_html_e( 'Designation', $this->best_testimonial ); ?></label>
+						</th>
+						<td>
+							<div class="text">
+								<input id="client_designation" type="text" class="custom-input" name="best_testimonial[client_designation]" value="<?php echo esc_attr($client_designation); ?>">                        
+							</div>
+						</td>
+					</tr>
+					<tr style="display:none;">
+						<th>
 							<label for="email"><?php esc_html_e( 'Email', $this->best_testimonial ); ?></label>
 						</th>
 						<td>
@@ -339,7 +350,7 @@ class Best_Testimonial_Admin {
 							</div>
 						</td>
 					</tr>
-					<tr>
+					<tr style="display:none;">
 						<th>
 							<label for="company_name"><?php esc_html_e( 'Company Name', $this->best_testimonial ); ?></label>
 						</th>
@@ -349,7 +360,7 @@ class Best_Testimonial_Admin {
 							</div>
 						</td>
 					</tr>
-					<tr>
+					<tr style="display:none;">
 						<th>
 							<label for="company_website"><?php esc_html_e( 'Company Website', $this->best_testimonial ); ?></label>
 						</th>
@@ -398,6 +409,7 @@ class Best_Testimonial_Admin {
 			if ( $this->user_can_save( $post_id, 'best_testimonial', $postData['nonce'] ) ) {
  
 				$saveableData['client_name']        = sanitize_text_field( $postData['client_name'] );
+				$saveableData['client_designation']        = sanitize_text_field( $postData['client_designation'] );
 				$saveableData['email']       = sanitize_text_field( $postData['email'] );
 				$saveableData['company_name']     = $postData['company_name'];
 				$saveableData['company_website']     = $postData['company_website'];

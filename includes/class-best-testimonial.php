@@ -191,8 +191,11 @@ class Best_Testimonial {
 
 		$plugin_public = new Best_Testimonial_Public( $this->get_best_testimonial(), $this->get_version() );
 
+		$this->loader->add_action( 'wp_head', $plugin_public, 'bestt_css' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+		// testimonial frontend sghortcode
+		add_shortcode('best_testimonial', array($plugin_public, 'best_testimonial_frontend' ));
 
 	}
 

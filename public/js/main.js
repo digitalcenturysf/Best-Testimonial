@@ -1,32 +1,36 @@
 (function( $ ) {
-	'use strict';
+	'use strict'; 
+	/*----------------------------
+	bestt Testimonial
+	------------------------------ */  
+	$(".bestt-testimonial").owlCarousel({
+		autoPlay: true, 
+		slideSpeed:2000,
+		pagination:true,
+		navigation:false,	  
+		items : 1, 
+		navigationText:["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
+		itemsDesktop : [1199,1],
+		itemsDesktopSmall : [980,1],
+		itemsTablet: [768,1],
+		itemsMobile : [479,1],
+	}); 
 
-	/**
-	 * All of the code for your public-facing JavaScript source
-	 * should reside in this file.
-	 *
-	 * Note: It has been assumed you will write jQuery code here, so the
-	 * $ function reference has been prepared for usage within the scope
-	 * of this function.
-	 *
-	 * This enables you to define handlers, for when the DOM is ready:
-	 *
-	 * $(function() {
-	 *
-	 * });
-	 *
-	 * When the window is loaded:
-	 *
-	 * $( window ).load(function() {
-	 *
-	 * });
-	 *
-	 * ...and/or other possibilities.
-	 *
-	 * Ideally, it is not considered best practise to attach more than a
-	 * single DOM-ready or window-load handler for a particular page.
-	 * Although scripts in the WordPress core, Plugins and Themes may be
-	 * practising this, we should strive to set a better example in our own work.
-	 */
+	/*----------------------------
+	bestt2 Testimonial
+	------------------------------ */  
+	$(".bestt2-testimonial").owlCarousel({
+	    autoPlay: true, 
+	  slideSpeed:2000,
+	  pagination:true,
+	  navigation:false,	  
+	    items : 1, 
+	  navigationText:["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
+	    itemsDesktop : [1199,1],
+	  itemsDesktopSmall : [980,1],
+	  itemsTablet: [768,1],
+	  itemsMobile : [479,1],
+	});
+
 
 })( jQuery );

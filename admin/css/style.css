@@ -49,11 +49,14 @@
  
 .nav-tab{
     color: #000;
+    min-width: 65px;
+    text-align: center;
+    background: #cccccc;
 }
 .nav-tab:hover,
 .nav-tab-active {
     border-bottom: 0;
-    background: #fff; 
+    background: #f1f1f1; 
 }
 .group h2{
     display: none;
@@ -61,4 +64,11 @@
 span.support{
     padding: 0 12px;
     font-style: italic;
+}
+.inside .metabox-holder {
+    border-top: 1px solid #ccc;
+}
+#post-body code{
+    display: block !important;
+    padding: 10px !important;
 }

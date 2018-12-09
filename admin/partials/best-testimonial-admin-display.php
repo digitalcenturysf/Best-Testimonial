@@ -17,14 +17,15 @@
 <div class="wrap"> 
     <h2><?php esc_html_e('Settings', 'best-testimonial'); ?></h2>
     <div id="poststuff"> 
-        <div id="post-body" class="metabox-holder columns-2"> 
+        <div id="post-body" class="metabox-holder"> 
+            <p><b><i><?php esc_html_e('There are two settings for the testimonial, Since we have provided two styles of testimonial as output.','best-testimonial'); ?></i></b></p> 
+        	<?php settings_errors(); ?>
         	<div id="post-body-content"> 
 	            <div class="inside">
 	                <?php $this->settings_api->show_navigation();?>
 	                <?php $this->settings_api->show_forms();?> 
 	            </div>   
-	        </div> 
-	        <?php include('sidebar.php'); ?>  
+	        </div>  
         </div>    
     </div>   
 </div>  

@@ -68,12 +68,18 @@ class Best_Testimonial_Admin_Options {
  
 
     public function admin_menu() {
-    	add_submenu_page('edit.php?post_type=best_testimonial', __('Settings', $this->best_testimonial), __('Settings', $this->best_testimonial ), 'manage_options', 'best_testimonial_settings', array($this, 'admin_settings')); 
+        add_submenu_page('edit.php?post_type=best_testimonial', __('Settings', $this->best_testimonial), __('Settings', $this->best_testimonial ), 'manage_options', 'best_testimonial_settings', array($this, 'admin_settings'));
+    	add_submenu_page('edit.php?post_type=best_testimonial', __('About', $this->best_testimonial), __('About', $this->best_testimonial ), 'manage_options', 'best_testimonial_settings_info', array($this, 'admin_settings_info')); 
     }
     
-	public function admin_settings() { 
+    public function admin_settings() { 
 
-		include('best-testimonial-admin-display.php');
+        include('best-testimonial-admin-display.php');
+    }
+
+	public function admin_settings_info() { 
+
+		include('best-testimonial-admin-display-info.php');
 	}
 
  
@@ -90,8 +96,12 @@ class Best_Testimonial_Admin_Options {
     public function get_settings_sections() {
         $sections = array(
             array(
-                'id'    => 'bestt_general',
-                'title' => __( 'General', 'best-testimonial' )
+                'id'    => 'bestt_style_one',
+                'title' => __( 'For Style 1', 'best-testimonial' )
+            ), 
+            array(
+                'id'    => 'bestt_style_two',
+                'title' => __( 'For Style 2', 'best-testimonial' )
             ) 
         );
         return $sections;
@@ -104,125 +114,119 @@ class Best_Testimonial_Admin_Options {
      */
     public function get_settings_fields() {
         $settings_fields = array(
-            'bestt_general' => array(
+            'bestt_style_one' => array(  
                 array(
-                    'name'              => 'text_val',
-                    'label'             => __( 'Text Input', 'best-testimonial' ),
-                    'desc'              => __( 'Text input description', 'best-testimonial' ),
-                    'placeholder'       => __( 'Text Input placeholder', 'best-testimonial' ),
-                    'type'              => 'text',
-                    'default'           => 'Title',
-                    'sanitize_callback' => 'sanitize_text_field'
-                ),
-                array(
-                    'name'              => 'number_input',
-                    'label'             => __( 'Number Input', 'best-testimonial' ),
-                    'desc'              => __( 'Number field with validation callback `floatval`', 'best-testimonial' ),
-                    'placeholder'       => __( '1.99', 'best-testimonial' ),
-                    'min'               => 0,
-                    'max'               => 100,
-                    'step'              => '0.01',
-                    'type'              => 'number',
-                    'default'           => 'Title',
-                    'sanitize_callback' => 'floatval'
-                ),
-                array(
-                    'name'        => 'textarea',
-                    'label'       => __( 'Textarea Input', 'best-testimonial' ),
-                    'desc'        => __( 'Textarea description', 'best-testimonial' ),
-                    'placeholder' => __( 'Textarea placeholder', 'best-testimonial' ),
-                    'type'        => 'textarea'
-                ),
-                array(
-                    'name'        => 'htmld',
-                    // 'label'       => __( 'HTML', 'best-testimonial' ),
-                    'desc'        => __( 'HTML area description. You can use any <strong>bold</strong> or other HTML elements.', 'best-testimonial' ),
-                    'type'        => 'html'
-                ),
-                array(
-                    'name'        => 'html',
-                    'label'       => __( 'HTML:', 'best-testimonial' ),
-                    // 'desc'        => __( 'HTML area description. You can use any <strong>bold</strong> or other HTML elements.', 'best-testimonial' ),
-                    'type'        => 'html'
-                ),
-                array(
-                    'name'  => 'checkbox',
-                    'label' => __( 'Checkbox', 'best-testimonial' ),
-                    'desc'  => __( 'Checkbox Label', 'best-testimonial' ),
-                    'type'  => 'checkbox'
-                ),
-                array(
-                    'name'    => 'radio',
-                    'label'   => __( 'Radio Button', 'best-testimonial' ),
-                    'desc'    => __( 'A radio button', 'best-testimonial' ),
-                    'type'    => 'radio',
-                    'options' => array(
-                        'yes' => 'Yes',
-                        'no'  => 'No'
-                    )
-                ),
-                array(
-                    'name'    => 'selectbox',
-                    'label'   => __( 'A Dropdown', 'best-testimonial' ),
-                    'desc'    => __( 'Dropdown description', 'best-testimonial' ),
-                    'type'    => 'select',
-                    'default' => 'no',
-                    'options' => array(
-                        'yes' => 'Yes',
-                        'no'  => 'No'
-                    )
-                ),
-                array(
-                    'name'    => 'password',
-                    'label'   => __( 'Password', 'best-testimonial' ),
-                    'desc'    => __( 'Password description', 'best-testimonial' ),
-                    'type'    => 'password',
-                    'default' => ''
-                ),
-                array(
-                    'name'    => 'file',
-                    'label'   => __( 'File', 'best-testimonial' ),
-                    'desc'    => __( 'File description', 'best-testimonial' ),
-                    'type'    => 'file',
-                    'default' => '',
-                    'options' => array(
-                        'button_label' => 'Choose Image'
-                    )
-                ),
-                array(
-                    'name'    => 'color',
-                    'label'   => __( 'Color', 'best-testimonial' ),
-                    'desc'    => __( 'Color description', 'best-testimonial' ),
+                    'name'    => 'c_color_1',
+                    'label'   => __( 'Content Color', 'best-testimonial' ),
+                    'desc'    => __( 'Pick a color for review content.', 'best-testimonial' ),
                     'type'    => 'color',
                     'default' => ''
                 ),
                 array(
-                    'name'    => 'password',
-                    'label'   => __( 'Password', 'best-testimonial' ),
-                    'desc'    => __( 'Password description', 'best-testimonial' ),
-                    'type'    => 'password',
+                    'name'              => 'c_fs_1',
+                    'label'             => __( 'Content Font Size', 'best-testimonial' ),
+                    'desc'              => __( 'Input font size value with px.', 'best-testimonial' ),
+                    'placeholder'       => __( '16px', 'best-testimonial' ),
+                    'type'              => 'text',
+                    'default'           => '',
+                    'sanitize_callback' => 'sanitize_text_field'
+                ),  
+                array(
+                    'name'    => 'n_color_1',
+                    'label'   => __( 'Name Color', 'best-testimonial' ),
+                    'desc'    => __( 'Pick a color for name .', 'best-testimonial' ),
+                    'type'    => 'color',
+                    'default' => ''
+                ), 
+                array(
+                    'name'              => 'n_fs_1',
+                    'label'             => __( 'Name Font Size', 'best-testimonial' ),
+                    'desc'              => __( 'Input font size value with px.', 'best-testimonial' ),
+                    'placeholder'       => __( '16px', 'best-testimonial' ),
+                    'type'              => 'text',
+                    'default'           => '',
+                    'sanitize_callback' => 'sanitize_text_field'
+                ),
+                array(
+                    'name'    => 'd_color_1',
+                    'label'   => __( 'Designation Color', 'best-testimonial' ),
+                    'desc'    => __( 'Pick a color for designation.', 'best-testimonial' ),
+                    'type'    => 'color',
                     'default' => ''
                 ),
                 array(
-                    'name'    => 'wysiwyg',
-                    'label'   => __( 'Advanced Editor', 'best-testimonial' ),
-                    'desc'    => __( 'WP_Editor description', 'best-testimonial' ),
-                    'type'    => 'wysiwyg',
+                    'name'              => 'd_fs_1',
+                    'label'             => __( 'Designation Font Size', 'best-testimonial' ),
+                    'desc'              => __( 'Input font size value with px.', 'best-testimonial' ),
+                    'placeholder'       => __( '14px', 'best-testimonial' ),
+                    'type'              => 'text',
+                    'default'           => '',
+                    'sanitize_callback' => 'sanitize_text_field'
+                ),
+                array(
+                    'name'    => 'indc_color_1',
+                    'label'   => __( 'Indicator Fill Color', 'best-testimonial' ),
+                    'desc'    => __( 'Pick a color for indicator.', 'best-testimonial' ),
+                    'type'    => 'color',
+                    'default' => ''
+                ),  
+                array(
+                    'name'    => 'indc_b_color_1',
+                    'label'   => __( 'Indicator Border Color', 'best-testimonial' ),
+                    'desc'    => __( 'Pick a color for indicator border.', 'best-testimonial' ),
+                    'type'    => 'color',
+                    'default' => ''
+                ),   
+            ),
+            'bestt_style_two' => array(
+                array(
+                    'name'    => 'bx_color_2',
+                    'label'   => __( 'Box BG Color', 'best-testimonial' ),
+                    'desc'    => __( 'Pick a color for box background.', 'best-testimonial' ),
+                    'type'    => 'color',
                     'default' => ''
                 ),
                 array(
-                    'name'    => 'multicheck',
-                    'label'   => __( 'Multile checkbox', 'best-testimonial' ),
-                    'desc'    => __( 'Multi checkbox description', 'best-testimonial' ),
-                    'type'    => 'multicheck',
-                    'default' => array('one' => 'one', 'four' => 'four'),
-                    'options' => array(
-                        'one'   => 'One',
-                        'two'   => 'Two',
-                        'three' => 'Three',
-                        'four'  => 'Four'
-                    )
+                    'name'    => 'c_color_2',
+                    'label'   => __( 'Content Color', 'best-testimonial' ),
+                    'desc'    => __( 'Pick a color for review content.', 'best-testimonial' ),
+                    'type'    => 'color',
+                    'default' => ''
                 ),
+                array(
+                    'name'              => 'c_fs_2',
+                    'label'             => __( 'Content Font Size', 'best-testimonial' ),
+                    'desc'              => __( 'Input font size value with px.', 'best-testimonial' ),
+                    'placeholder'       => __( '16px', 'best-testimonial' ),
+                    'type'              => 'text',
+                    'default'           => '',
+                    'sanitize_callback' => 'sanitize_text_field'
+                ),  
+                array(
+                    'name'    => 'nd_color_2',
+                    'label'   => __( 'Name & Designation Color', 'best-testimonial' ),
+                    'desc'    => __( 'Pick a color for name & designation.', 'best-testimonial' ),
+                    'type'    => 'color',
+                    'default' => ''
+                ),
+                array(
+                    'name'              => 'n_fs_2',
+                    'label'             => __( 'Name Font Size', 'best-testimonial' ),
+                    'desc'              => __( 'Input font size value with px.', 'best-testimonial' ),
+                    'placeholder'       => __( '16px', 'best-testimonial' ),
+                    'type'              => 'text',
+                    'default'           => '',
+                    'sanitize_callback' => 'sanitize_text_field'
+                ),
+                array(
+                    'name'              => 'd_fs_2',
+                    'label'             => __( 'Designation Font Size', 'best-testimonial' ),
+                    'desc'              => __( 'Input font size value with px.', 'best-testimonial' ),
+                    'placeholder'       => __( '14px', 'best-testimonial' ),
+                    'type'              => 'text',
+                    'default'           => '',
+                    'sanitize_callback' => 'sanitize_text_field'
+                ),   
             )
         );
 
