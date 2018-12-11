@@ -22,7 +22,7 @@
         	<div id="post-body-content"> 
 	            <div class="inside"> 
                     <p>There are two ways to use <b><i>shortcode</i></b> to display the testimonial output.</p>
-                    <p>In posts or pages:</p>
+                    <p>In posts or pages editor:</p>
                     <code> [best_testimonial style="" bg_img_id="" number="" cat=""]</code> 
                     <p>In php file:</p>
                     <code> &lt;?php echo do_shortcode('[best_testimonial style="" bg_img_id="" number="" cat=""]') ?&gt;

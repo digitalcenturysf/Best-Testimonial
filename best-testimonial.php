@@ -2,7 +2,7 @@
 /** 
  * Plugin Name:       Best Testimonial
  * Plugin URI:        https://digitalcenturysf.com/best-testimonial/
- * Description:       A very simple and powerful testimonial system for wordpress website. Customizable & user friendly.
+ * Description:       Very simple and powerful testimonial system for wordpress website. Customizable & user friendly.
  * Version:           1.0.0
  * Author:            DigitalCenturySF
  * Author URI:        https://digitalcenturysf.com/
