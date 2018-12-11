@@ -68,8 +68,8 @@ class Best_Testimonial_Admin_Options {
  
 
     public function admin_menu() {
-        add_submenu_page('edit.php?post_type=best_testimonial', __('Settings', $this->best_testimonial), __('Settings', $this->best_testimonial ), 'manage_options', 'best_testimonial_settings', array($this, 'admin_settings'));
-    	add_submenu_page('edit.php?post_type=best_testimonial', __('About', $this->best_testimonial), __('About', $this->best_testimonial ), 'manage_options', 'best_testimonial_settings_info', array($this, 'admin_settings_info')); 
+        add_submenu_page('edit.php?post_type=best_testimonial', __('Settings', 'best-testimonial'), __('Settings', 'best-testimonial' ), 'manage_options', 'best_testimonial_settings', array($this, 'admin_settings'));
+    	add_submenu_page('edit.php?post_type=best_testimonial', __('About', 'best-testimonial'), __('About', 'best-testimonial' ), 'manage_options', 'best_testimonial_settings_info', array($this, 'admin_settings_info')); 
     }
     
     public function admin_settings() { 

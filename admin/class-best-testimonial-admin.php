@@ -141,24 +141,24 @@ class Best_Testimonial_Admin {
 	public function best_testimonial_post_type() {
 
 		$labels_Testimonial_pro = array(
-			'name'               => _x( 'Testimonials', 'Post Type General Name', $this->best_testimonial ),
-			'singular_name'      => _x( 'Testimonial', 'Post Type Singular Name', $this->best_testimonial ),
-			'menu_name'          => __( 'Testimonials', $this->best_testimonial ),
-			'parent_item_colon'  => __( 'Parent Testimonial:', $this->best_testimonial ),
-			'all_items'          => __( 'All Testimonials', $this->best_testimonial ),
-			'view_item'          => __( 'View Testimonials', $this->best_testimonial ),
-			'add_new_item'       => __( 'Add New Testimonial', $this->best_testimonial ),
-			'add_new'            => __( 'Add Testimonial', $this->best_testimonial ),
-			'edit_item'          => __( 'Edit Testimonial', $this->best_testimonial ),
-			'update_item'        => __( 'Update Testimonial', $this->best_testimonial ),
-			'search_items'       => __( 'Search Testimonials', $this->best_testimonial ),
-			'not_found'          => __( 'Not found', $this->best_testimonial ),
-			'not_found_in_trash' => __( 'Not found in Trash', $this->best_testimonial ),
+			'name'               => _x( 'Testimonials', 'Post Type General Name', 'best-testimonial' ),
+			'singular_name'      => _x( 'Testimonial', 'Post Type Singular Name', 'best-testimonial' ),
+			'menu_name'          => __( 'Testimonials', 'best-testimonial' ),
+			'parent_item_colon'  => __( 'Parent Testimonial:', 'best-testimonial' ),
+			'all_items'          => __( 'All Testimonials', 'best-testimonial' ),
+			'view_item'          => __( 'View Testimonials', 'best-testimonial' ),
+			'add_new_item'       => __( 'Add New Testimonial', 'best-testimonial' ),
+			'add_new'            => __( 'Add Testimonial', 'best-testimonial' ),
+			'edit_item'          => __( 'Edit Testimonial', 'best-testimonial' ),
+			'update_item'        => __( 'Update Testimonial', 'best-testimonial' ),
+			'search_items'       => __( 'Search Testimonials', 'best-testimonial' ),
+			'not_found'          => __( 'Not found', 'best-testimonial' ),
+			'not_found_in_trash' => __( 'Not found in Trash', 'best-testimonial' ),
 		);
 
 		$args_Testimonial_pro   = array(
-			'label'               => __( 'Testimonial', $this->best_testimonial ),
-			'description'         => __( 'Testimonial Display', $this->best_testimonial ),
+			'label'               => __( 'Testimonial', 'best-testimonial' ),
+			'description'         => __( 'Testimonial Display', 'best-testimonial' ),
 			'labels'              => $labels_Testimonial_pro,
 			'supports'            => array( 'editor','thumbnail' ),
 			'hierarchical'        => false,
@@ -228,10 +228,10 @@ class Best_Testimonial_Admin {
 	public function best_testimonial_columns_head($columns) {
 	   $columns = array(
 	      'cb' => $columns['cb'],
-	      'tpro_full_name' => __( 'Full Name' ),
-	      'tpro_email' => __( 'Email' ),
-	      'tpro_company' => __( 'Company' ),
-	      'tpro_thumbnail' => __( 'Thumbnail' ), 
+	      'tpro_full_name' => __( 'Full Name','best-testimonial' ), 
+	      'tpro_excerpt' => __( 'Excerpt','best-testimonial' ),
+	      'tpro_designation' => __( 'Designation','best-testimonial' ),
+	      'tpro_thumbnail' => __( 'Thumbnail','best-testimonial' ), 
 	      'date' => $columns['date'], 
 	    ); 
 	    return $columns;
@@ -248,31 +248,34 @@ class Best_Testimonial_Admin {
 		$fieldValues = get_post_meta( $post_id, '_testimonialprometa', true ); 
 
 		$client_name    = !empty( $fieldValues['client_name'] ) ? $fieldValues['client_name'] : '';
+		$client_designation    = isset( $fieldValues['client_designation'] ) ? $fieldValues['client_designation'] : '';
 		$email = !empty( $fieldValues['email'] ) ? $fieldValues['email'] : '';
 		$company_name = !empty( $fieldValues['company_name'] ) ? $fieldValues['company_name'] : '';
 		$company_website= !empty( $fieldValues['company_website'] ) ? $fieldValues['company_website'] : '#'; 
 
+		$excerpt =  wp_trim_words(get_the_content(),16,'[...]');
+
 		if ( 'tpro_full_name' === $column_name ) {
 		    if ( ! $client_name ) {
-		      esc_html_e( 'n/a',$this->best_testimonial );  
+		      esc_html_e( 'n/a','best-testimonial' );  
 		    } else {
 		      echo esc_html($client_name);
 		    }
 		}
-		if ( 'tpro_email' === $column_name ) { 
+		if ( 'tpro_excerpt' === $column_name ) { 
 
-		    if ( ! $email ) {
-		      esc_html_e( 'n/a',$this->best_testimonial );  
+		    if ( ! $excerpt ) {
+		      esc_html_e( 'n/a','best-testimonial' );  
 		    } else {
-		      echo esc_html($email);
+		      echo esc_html($excerpt);
 		    }
 		}
-		if ( 'tpro_company' === $column_name ) { 
+		if ( 'tpro_designation' === $column_name ) { 
 
-		    if ( ! $company_name ) {
-		      esc_html_e( 'n/a',$this->best_testimonial );  
+		    if ( ! $client_designation ) {
+		      esc_html_e( 'n/a','best-testimonial' );  
 		    } else {
-		    	echo '<a href="'.esc_url($company_website).'" target="_blanks">'.esc_html($company_name).'</a>';
+		      echo esc_html($client_designation);
 		    }
 		}
 	    if ( 'tpro_thumbnail' === $column_name ) {
@@ -287,7 +290,7 @@ class Best_Testimonial_Admin {
 	 * @since    1.0.0
 	 */ 
 	public function best_testimonial_add_meta_boxes() { 
-	    add_meta_box( 'food_meta_box', __( 'Client Details', $this->best_testimonial ), array($this,'best_testimonial_metabox_display'), 'best_testimonial', 'normal', 'low' );
+	    add_meta_box( 'food_meta_box', __( 'Client Details', 'best-testimonial' ), array($this,'best_testimonial_metabox_display'), 'best_testimonial', 'normal', 'low' );
 	}
 
 
@@ -322,7 +325,7 @@ class Best_Testimonial_Admin {
 					</tr>
 					<tr>
 						<th>
-							<label for="client_name"><?php esc_html_e( 'Full Name', $this->best_testimonial ); ?></label>
+							<label for="client_name"><?php esc_html_e( 'Full Name', 'best-testimonial' ); ?></label>
 						</th>
 						<td>
 							<div class="text">
@@ -332,7 +335,7 @@ class Best_Testimonial_Admin {
 					</tr>
 					<tr>
 						<th>
-							<label for="client_designation"><?php esc_html_e( 'Designation', $this->best_testimonial ); ?></label>
+							<label for="client_designation"><?php esc_html_e( 'Designation', 'best-testimonial' ); ?></label>
 						</th>
 						<td>
 							<div class="text">
@@ -342,7 +345,7 @@ class Best_Testimonial_Admin {
 					</tr>
 					<tr style="display:none;">
 						<th>
-							<label for="email"><?php esc_html_e( 'Email', $this->best_testimonial ); ?></label>
+							<label for="email"><?php esc_html_e( 'Email', 'best-testimonial' ); ?></label>
 						</th>
 						<td>
 							<div class="email">
@@ -352,7 +355,7 @@ class Best_Testimonial_Admin {
 					</tr>
 					<tr style="display:none;">
 						<th>
-							<label for="company_name"><?php esc_html_e( 'Company Name', $this->best_testimonial ); ?></label>
+							<label for="company_name"><?php esc_html_e( 'Company Name', 'best-testimonial' ); ?></label>
 						</th>
 						<td>
 							<div class="text">
@@ -362,7 +365,7 @@ class Best_Testimonial_Admin {
 					</tr>
 					<tr style="display:none;">
 						<th>
-							<label for="company_website"><?php esc_html_e( 'Company Website', $this->best_testimonial ); ?></label>
+							<label for="company_website"><?php esc_html_e( 'Company Website', 'best-testimonial' ); ?></label>
 						</th>
 						<td>
 							<div class="url">

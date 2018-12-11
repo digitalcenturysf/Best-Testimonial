@@ -15,19 +15,20 @@
  ?>
 
 <div class="wrap"> 
-    <h2><?php esc_html_e('Best Testimonial Info:', 'best-testimonial'); ?></h2>
+    <h2><?php esc_html_e('Best Testimonial', 'best-testimonial'); ?></h2>
     <div id="poststuff"> 
         <div id="post-body" class="metabox-holder columns-2"> 
             
         	<div id="post-body-content"> 
 	            <div class="inside"> 
                     <p>There are two ways to use <b><i>shortcode</i></b> to display the testimonial output.</p>
-                    <p>In posts or pages editor:</p>
+                    <p><b><i>In posts or pages editor:</i></b></p>
                     <code> [best_testimonial style="" bg_img_id="" number="" cat=""]</code> 
-                    <p>In php file:</p>
+                    <p><b><i>In php file:</i></b></p>
                     <code> &lt;?php echo do_shortcode('[best_testimonial style="" bg_img_id="" number="" cat=""]') ?&gt;
                     </code><br>
-                    <code> <b><i>Shortcode parameters:</i></b>
+                    <p><b><i>Shortcode parameters:</i></b></p>
+                    <code> 
                        <br> <b>style:</b> Testimonial style. Insert value 1 or 2
                        <br> <b>bg_img_id:</b>  Background image. Insert image id. Go to Media > Library: Select an image and follow the url at address bar of the browser, item=image_id. 
                        <br> <b>number:</b> Number of testimonial to show. 
